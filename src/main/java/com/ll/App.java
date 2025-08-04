@@ -4,7 +4,10 @@ import java.util.Scanner;
 
 public class App {
     void run () {
-        String input = "등록\n 안녕!!";
+        String input = """
+                등록
+                안녕!!
+                """;
 
         Scanner scanner = new Scanner(input);
 
