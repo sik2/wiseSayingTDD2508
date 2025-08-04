@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class App {
     void run () {
+        String input = "등록";
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(input);
 
         String cmd = scanner.nextLine();
 
