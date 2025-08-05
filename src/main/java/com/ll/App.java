@@ -2,6 +2,7 @@ package com.ll;
 
 import com.ll.domain.system.controller.SystemController;
 import com.ll.domain.wiseSaying.controller.WiseSayingController;
+import com.ll.global.rq.Rq;
 
 import java.util.Scanner;
 
@@ -21,13 +22,13 @@ public class App {
         while (true) {
             System.out.println("명령) ");
             String cmd = scanner.nextLine();
-            String actionName = cmd.split("\\?")[0];
+            Rq rq = new Rq(cmd);
 
-            switch (actionName) {
+            switch (rq.getActionName()) {
                 case "등록" -> wiseSayingController.actionWrite();
                 case "목록" -> wiseSayingController.actionList();
-                case "삭제" -> wiseSayingController.actionDelete(cmd);
-                case "수정" -> wiseSayingController.actionModify(cmd);
+                case "삭제" -> wiseSayingController.actionDelete(rq);
+                case "수정" -> wiseSayingController.actionModify(rq);
                 case "종료" -> {
                     systemController.actionExit();
                     return;
