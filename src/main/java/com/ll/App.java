@@ -21,10 +21,12 @@ public class App {
         while (true) {
             System.out.println("명령) ");
             String cmd = scanner.nextLine();
+            String actionName = cmd.split("\\?")[0];
 
-            switch (cmd) {
+            switch (actionName) {
                 case "등록" -> wiseSayingController.actionWrite();
                 case "목록" -> wiseSayingController.actionList();
+                case "삭제" -> wiseSayingController.actionDelete(cmd);
                 case "종료" -> {
                     systemController.actionExit();
                     return;
