@@ -1,6 +1,7 @@
 package com.ll.domain.wiseSaying.service;
 
 
+import com.ll.AppContext;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.repository.WiseSayingRepository;
 
@@ -10,7 +11,7 @@ public class WiseSayingService {
     private final WiseSayingRepository wiseSayingRepository;
 
     public WiseSayingService () {
-        wiseSayingRepository = new WiseSayingRepository();
+        wiseSayingRepository = AppContext.wiseSayingRepository;
     }
 
     public WiseSaying write (String content, String author) {

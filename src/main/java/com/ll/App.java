@@ -13,8 +13,8 @@ public class App {
     }
 
     public void run () {
-        SystemController systemController = new SystemController();
-        WiseSayingController wiseSayingController = new WiseSayingController(scanner);
+        SystemController systemController = AppContext.systemController;
+        WiseSayingController wiseSayingController = new WiseSayingController();
 
         System.out.println("== 명언 앱 ==");
 
