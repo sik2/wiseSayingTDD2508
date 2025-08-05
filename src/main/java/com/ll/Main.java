@@ -6,7 +6,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        new App(new Scanner(System.in)).run();
+        AppContext.scanner = new Scanner(System.in);
+        new App().run();
 //        lab1();
 //        lab2();
     }
