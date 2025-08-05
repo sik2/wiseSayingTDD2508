@@ -25,6 +25,7 @@ public class WiseSayingController {
 
         WiseSaying wiseSaying = wiseSayingService.write(content, author);
 
+        System.out.println(wiseSaying);
         System.out.printf("%d번 명언이 등록되었습니다.\n", wiseSaying.getId());
     }
 
