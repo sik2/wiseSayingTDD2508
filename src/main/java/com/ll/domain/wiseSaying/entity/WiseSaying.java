@@ -33,4 +33,8 @@ public class WiseSaying {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public boolean isNew() {
+        return id == 0;
+    }
 }
