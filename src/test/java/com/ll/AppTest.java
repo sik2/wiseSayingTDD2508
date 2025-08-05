@@ -11,7 +11,9 @@ public class AppTest {
     @DisplayName("`== 명언 앱 == ` 출력")
     public void t1 () {
         String rs = AppTestRunner.run("");
-        assertThat(rs).contains("== 명언 앱 ==");
+        assertThat(rs)
+                .contains("== 명언 앱 ==")
+                .contains("명령) ");
     }
 
     @Test
@@ -24,7 +26,6 @@ public class AppTest {
                 """);
 
         assertThat(rs)
-                .contains("명령) ")
                 .contains("명언 : ")
                 .contains("작가 : ");
     }
