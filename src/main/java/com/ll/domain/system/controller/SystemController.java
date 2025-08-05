@@ -1,4 +1,4 @@
-package com.ll;
+package com.ll.domain.system.controller;
 
 public class SystemController {
     public void actionExit() {
