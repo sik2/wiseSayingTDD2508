@@ -29,6 +29,7 @@ public class WiseSayingService {
 
         return switch (keywordType) {
             case "content" -> wiseSayingRepository.findForListByContentContaining(keyword);
+            case "author" -> wiseSayingRepository.findForListByAuthorContaining(keyword);
             default -> Collections.emptyList(); // null 대신 빈 리스트
         };
     }
