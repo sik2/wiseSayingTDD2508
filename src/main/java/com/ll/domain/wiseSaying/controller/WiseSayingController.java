@@ -4,6 +4,7 @@ import com.ll.AppContext;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.service.WiseSayingService;
 import com.ll.global.rq.Rq;
+import com.ll.standard.dto.Pageable;
 
 import java.util.Scanner;
 
@@ -39,7 +40,9 @@ public class WiseSayingController {
         int pageSize = rq.getParamsAsInt("pageSize", 5);
         int pageNo = rq.getParamsAsInt("page", 1);
 
-        for (WiseSaying wiseSaying : wiseSayingService.findForList(keywordType, keyword, pageSize, pageNo)) {
+        Pageable pageable = new Pageable(pageNo, pageSize);
+
+        for (WiseSaying wiseSaying : wiseSayingService.findForList(keywordType, keyword, pageable)) {
             System.out.printf("%d / %s / %s\n", wiseSaying.getId(), wiseSaying.getAuthor(), wiseSaying.getContent());
         }
     }

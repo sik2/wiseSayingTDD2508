@@ -4,6 +4,7 @@ package com.ll.domain.wiseSaying.service;
 import com.ll.AppContext;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.repository.WiseSayingRepository;
+import com.ll.standard.dto.Pageable;
 
 import java.util.List;
 
@@ -21,15 +22,15 @@ public class WiseSayingService {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findForList(String keywordType, String keyword, int pageSize, int pageNo) {
+    public List<WiseSaying> findForList(String keywordType, String keyword, Pageable pageable) {
         if (keyword.isBlank()) {
-            return wiseSayingRepository.findForList(pageSize, pageNo);
+            return wiseSayingRepository.findForList(pageable);
         }
 
         return switch (keywordType) {
-            case "content" -> wiseSayingRepository.findForListByContentContaining(keyword, pageSize, pageNo);
-            case "author" -> wiseSayingRepository.findForListByAuthorContaining(keyword, pageSize, pageNo);
-            default -> wiseSayingRepository.findForListByContentContainingOrAuthorContaining(keyword, pageSize, pageNo);
+            case "content" -> wiseSayingRepository.findForListByContentContaining(keyword, pageable);
+            case "author" -> wiseSayingRepository.findForListByAuthorContaining(keyword, pageable);
+            default -> wiseSayingRepository.findForListByContentContainingOrAuthorContaining(keyword, pageable);
         };
     }
 
