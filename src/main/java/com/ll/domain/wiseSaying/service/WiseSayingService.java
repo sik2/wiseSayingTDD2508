@@ -5,7 +5,6 @@ import com.ll.AppContext;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.repository.WiseSayingRepository;
 
-import java.util.Collections;
 import java.util.List;
 
 public class WiseSayingService {
@@ -30,7 +29,7 @@ public class WiseSayingService {
         return switch (keywordType) {
             case "content" -> wiseSayingRepository.findForListByContentContaining(keyword);
             case "author" -> wiseSayingRepository.findForListByAuthorContaining(keyword);
-            default -> Collections.emptyList(); // null 대신 빈 리스트
+            default -> wiseSayingRepository.findForListByContentContainingOrAuthorContaining(keyword);
         };
     }
 
