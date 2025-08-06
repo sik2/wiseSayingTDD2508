@@ -54,6 +54,7 @@ public class WiseSayingRepository {
         return wiseSayingList
                 .reversed()
                 .stream()
+                .skip((pageNo - 1) * pageSize)
                 .limit(pageSize)
                 .collect(Collectors.toList());
     }
