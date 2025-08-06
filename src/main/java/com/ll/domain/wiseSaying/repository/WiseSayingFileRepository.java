@@ -8,7 +8,11 @@ import java.util.Map;
 public class WiseSayingFileRepository {
     public void save(WiseSaying wiseSaying) {
         if (wiseSaying.isNew()) {
-            wiseSaying.setId(1);
+
+            int newId = getLastId() + 1;
+            wiseSaying.setId(newId);
+
+            setLastId(newId);
         }
 
         // 객체 정보를 Map으로 바꿔야한다.
@@ -28,5 +32,13 @@ public class WiseSayingFileRepository {
         WiseSaying wiseSaying = new WiseSaying(wiseSayingMap);
 
         return wiseSaying;
+     }
+
+     private void setLastId(int newId) {
+        Util.file.set("db/wiseSaying/lastId.json", newId);
+     }
+
+     private  int getLastId() {
+        return Util.file.getAsInt("db/wiseSaying/lastId.json", 0);
      }
 }
