@@ -50,8 +50,12 @@ public class WiseSayingRepository {
                 .reversed();
     }
 
-    public List<WiseSaying> findForList() {
-        return wiseSayingList.reversed();
+    public List<WiseSaying> findForList(int pageSize, int pageNo) {
+        return wiseSayingList
+                .reversed()
+                .stream()
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 
     public void delete(WiseSaying wiseSaying) {
