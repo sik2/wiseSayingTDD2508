@@ -34,6 +34,10 @@ public class WiseSayingFileRepository {
         return wiseSaying;
      }
 
+     public void delete(WiseSaying wiseSaying) {
+
+     }
+
      private void setLastId(int newId) {
         Util.file.set("db/wiseSaying/lastId.json", newId);
      }
