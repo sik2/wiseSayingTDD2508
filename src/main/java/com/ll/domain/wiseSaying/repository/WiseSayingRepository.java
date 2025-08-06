@@ -5,6 +5,7 @@ import com.ll.standard.dto.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -78,11 +79,11 @@ public class WiseSayingRepository {
                 .orElse(-1);
     }
 
-    public WiseSaying findById(int id) {
+    public Optional<WiseSaying> findById(int id) {
         int index = findIndexById(id);
 
-        if (index == -1) return null;
+        if (index == -1) return Optional.empty();
 
-        return wiseSayingList.get(index);
+        return Optional.of(wiseSayingList.get(index));
     }
 }

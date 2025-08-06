@@ -35,7 +35,7 @@ public class WiseSayingFileRepositoryTest {
 
         wiseSayingFileRepository.save(wiseSaying);
 
-        WiseSaying foundWiseSaying =  wiseSayingFileRepository.findById(1);
+        WiseSaying foundWiseSaying =  wiseSayingFileRepository.findById(1).get();
 
         assertThat(
                 foundWiseSaying
@@ -65,7 +65,7 @@ public class WiseSayingFileRepositoryTest {
 
         wiseSayingFileRepository.delete(wiseSaying2);
 
-        WiseSaying foundWiseSaying = wiseSayingFileRepository.findById(2);
+        WiseSaying foundWiseSaying = wiseSayingFileRepository.findById(2).get();
 
         assertThat(foundWiseSaying).isNull();
     }

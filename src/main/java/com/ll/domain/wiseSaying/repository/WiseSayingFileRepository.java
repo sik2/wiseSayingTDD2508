@@ -4,6 +4,7 @@ import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.standard.util.Util;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class WiseSayingFileRepository {
     public void save(WiseSaying wiseSaying) {
@@ -23,17 +24,17 @@ public class WiseSayingFileRepository {
         Util.file.set(getEntityFilePath(wiseSaying.getId()), wiseSayingJsonStr);
     }
 
-     public WiseSaying findById(int id) {
+     public Optional<WiseSaying> findById(int id) {
         String wiseSayingJsonStr = Util.file.get(getEntityFilePath(id), "");
 
-        if (wiseSayingJsonStr.isBlank()) return null;
+        if (wiseSayingJsonStr.isBlank()) return Optional.empty();
 
         Map<String, Object> wiseSayingMap = Util.json.toMap(wiseSayingJsonStr);
 
 
-        WiseSaying wiseSaying = new WiseSaying(wiseSayingMap);
+         Optional<WiseSaying> opWiseSaying = Optional.of(new WiseSaying(wiseSayingMap));
 
-        return wiseSaying;
+        return opWiseSaying;
      }
 
      public boolean delete(WiseSaying wiseSaying) {
