@@ -5,6 +5,7 @@ import com.ll.AppContext;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.repository.WiseSayingRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 public class WiseSayingService {
@@ -21,8 +22,15 @@ public class WiseSayingService {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findForList () {
-        return wiseSayingRepository.findForList();
+    public List<WiseSaying> findForList(String keywordType, String keyword) {
+        if (keyword.isBlank()) {
+            return wiseSayingRepository.findForList();
+        }
+
+        return switch (keywordType) {
+            case "content" -> wiseSayingRepository.findForListByContentContaining(keyword);
+            default -> Collections.emptyList(); // null 대신 빈 리스트
+        };
     }
 
     public boolean delete(int id) {

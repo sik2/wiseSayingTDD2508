@@ -4,6 +4,7 @@ import com.ll.domain.wiseSaying.entity.WiseSaying;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class WiseSayingRepository {
@@ -17,6 +18,16 @@ public class WiseSayingRepository {
         }
 
         return wiseSaying;
+    }
+
+    public List<WiseSaying> findForListByContentContaining(String keyword) {
+        return wiseSayingList
+                .stream()
+                .filter(
+                        wiseSaying -> wiseSaying.getContent().contains(keyword)
+                )
+                .collect(Collectors.toList())
+                .reversed();
     }
 
     public List<WiseSaying> findForList() {
