@@ -1,13 +1,32 @@
 package com.ll.domain.wiseSaying.repository;
 
 import com.ll.domain.wiseSaying.entity.WiseSaying;
+import com.ll.standard.util.Util;
+
+import java.util.Map;
 
 public class WiseSayingFileRepository {
     public void save(WiseSaying wiseSaying) {
+        if (wiseSaying.isNew()) {
+            wiseSaying.setId(1);
+        }
 
+        // 객체 정보를 Map으로 바꿔야한다.
+        Map<String, Object> wiseSayingMap = wiseSaying.toMap();
+        //Map => JSON 형태로 바꾼다
+       String wiseSayingJsonStr = Util.json.toString(wiseSayingMap);
+        //JSON 파일로 저장
+        Util.file.set("db/wiseSaying/1.json", wiseSayingJsonStr);
     }
 
      public WiseSaying findById(int id) {
-         return null;
+        String wiseSayingJsonStr = Util.file.get("db/wiseSaying/%d.json".formatted(id), "");
+
+        Map<String, Object> wiseSayingMap = Util.json.toMap(wiseSayingJsonStr);
+
+
+        WiseSaying wiseSaying = new WiseSaying(wiseSayingMap);
+
+        return wiseSaying;
      }
 }

@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-public class WiseSayingRepositoryTest {
+public class WiseSayingFileRepositoryTest {
     private final WiseSayingFileRepository wiseSayingFileRepository;
 
-    WiseSayingRepositoryTest() {
+    WiseSayingFileRepositoryTest() {
         wiseSayingFileRepository = new WiseSayingFileRepository();
     }
 
