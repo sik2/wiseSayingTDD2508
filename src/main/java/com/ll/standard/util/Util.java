@@ -3,6 +3,7 @@ package com.ll.standard.util;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 public class Util {
     public static class file {
@@ -84,6 +85,16 @@ public class Util {
             } catch (IOException e) {
                 return false;
             }
+        }
+    }
+
+    public static class json {
+        public static String toString(Map<String, Object> map) {
+            return "";
+        }
+
+        public static Map<String, Object> toMap(String jsonStr) {
+            return Map.of();
         }
     }
 }
