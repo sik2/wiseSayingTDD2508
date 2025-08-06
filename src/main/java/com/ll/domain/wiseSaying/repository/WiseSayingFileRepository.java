@@ -20,11 +20,11 @@ public class WiseSayingFileRepository {
         //Map => JSON 형태로 바꾼다
        String wiseSayingJsonStr = Util.json.toString(wiseSayingMap);
         //JSON 파일로 저장
-        Util.file.set("db/wiseSaying/1.json", wiseSayingJsonStr);
+        Util.file.set(getEntityFilePath(wiseSaying.getId()), wiseSayingJsonStr);
     }
 
      public WiseSaying findById(int id) {
-        String wiseSayingJsonStr = Util.file.get("db/wiseSaying/%d.json".formatted(id), "");
+        String wiseSayingJsonStr = Util.file.get(getEntityFilePath(id), "");
 
         if (wiseSayingJsonStr.isBlank()) return null;
 
@@ -37,16 +37,27 @@ public class WiseSayingFileRepository {
      }
 
      public boolean delete(WiseSaying wiseSaying) {
-        String filePath = "db/wiseSaying/%d.json".formatted(wiseSaying.getId());
-
+        String filePath = getEntityFilePath(wiseSaying.getId());
         return Util.file.delete(filePath);
      }
 
      private void setLastId(int newId) {
-        Util.file.set("db/wiseSaying/lastId.json", newId);
+        Util.file.set(getLastIdFilePath(), newId);
      }
 
      private  int getLastId() {
-        return Util.file.getAsInt("db/wiseSaying/lastId.json", 0);
+        return Util.file.getAsInt(getLastIdFilePath(), 0);
      }
+
+     public String getTableDirPath() {
+        return "db/wiseSaying";
+     }
+
+     public String getEntityFilePath(int id) {
+         return getTableDirPath() + "/%d.json".formatted(id);
+     }
+
+    public String getLastIdFilePath() {
+        return getTableDirPath() +  "/lastId.txt";
+    }
 }
