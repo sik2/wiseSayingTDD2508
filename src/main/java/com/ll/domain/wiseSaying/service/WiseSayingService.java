@@ -27,9 +27,9 @@ public class WiseSayingService {
         }
 
         return switch (keywordType) {
-            case "content" -> wiseSayingRepository.findForListByContentContaining(keyword);
-            case "author" -> wiseSayingRepository.findForListByAuthorContaining(keyword);
-            default -> wiseSayingRepository.findForListByContentContainingOrAuthorContaining(keyword);
+            case "content" -> wiseSayingRepository.findForListByContentContaining(keyword, pageSize, pageNo);
+            case "author" -> wiseSayingRepository.findForListByAuthorContaining(keyword, pageSize, pageNo);
+            default -> wiseSayingRepository.findForListByContentContainingOrAuthorContaining(keyword, pageSize, pageNo);
         };
     }
 

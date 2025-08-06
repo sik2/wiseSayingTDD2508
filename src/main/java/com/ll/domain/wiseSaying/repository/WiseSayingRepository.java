@@ -20,34 +20,40 @@ public class WiseSayingRepository {
         return wiseSaying;
     }
 
-    public List<WiseSaying> findForListByContentContaining(String keyword) {
+    public List<WiseSaying> findForListByContentContaining(String keyword, int pageSize, int pageNo) {
         return wiseSayingList
+                .reversed()
                 .stream()
                 .filter(
                         wiseSaying -> wiseSaying.getContent().contains(keyword)
                 )
-                .collect(Collectors.toList())
-                .reversed();
+                .skip((pageNo - 1) * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 
-    public List<WiseSaying> findForListByAuthorContaining(String keyword) {
+    public List<WiseSaying> findForListByAuthorContaining(String keyword, int pageSize, int pageNo) {
         return wiseSayingList
+                .reversed()
                 .stream()
                 .filter(
                         wiseSaying -> wiseSaying.getAuthor().contains(keyword)
                 )
-                .collect(Collectors.toList())
-                .reversed();
+                .skip((pageNo - 1) * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 
-    public List<WiseSaying> findForListByContentContainingOrAuthorContaining(String keyword) {
+    public List<WiseSaying> findForListByContentContainingOrAuthorContaining(String keyword, int pageSize, int pageNo) {
         return wiseSayingList
+                .reversed()
                 .stream()
                 .filter(
                         wiseSaying -> wiseSaying.getContent().contains(keyword) || wiseSaying.getAuthor().contains(keyword)
                 )
-                .collect(Collectors.toList())
-                .reversed();
+                .skip((pageNo - 1) * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toList());
     }
 
     public List<WiseSaying> findForList(int pageSize, int pageNo) {
