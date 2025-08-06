@@ -83,6 +83,10 @@ public class Util {
             }
         }
 
+        public static void rmdir(String dirPath) {
+            delete(dirPath);
+        }
+
         private static class FileDeleteVisitor extends SimpleFileVisitor<Path> {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {

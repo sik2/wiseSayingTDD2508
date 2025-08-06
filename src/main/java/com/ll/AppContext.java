@@ -2,6 +2,7 @@ package com.ll;
 
 import com.ll.domain.system.controller.SystemController;
 import com.ll.domain.wiseSaying.controller.WiseSayingController;
+import com.ll.domain.wiseSaying.repository.WiseSayingFileRepository;
 import com.ll.domain.wiseSaying.repository.WiseSayingRepository;
 import com.ll.domain.wiseSaying.service.WiseSayingService;
 
@@ -13,6 +14,7 @@ public class AppContext {
     public static WiseSayingController wiseSayingController;
     public static WiseSayingService wiseSayingService;
     public static WiseSayingRepository wiseSayingRepository;
+    public static WiseSayingFileRepository wiseSayingFileRepository;
 
     public static void renew (Scanner _scanner) {
         scanner = _scanner;
@@ -20,6 +22,7 @@ public class AppContext {
         wiseSayingRepository = new WiseSayingRepository();
         wiseSayingService = new WiseSayingService();
         wiseSayingController = new WiseSayingController();
+        wiseSayingFileRepository = new WiseSayingFileRepository();
     }
 
     public static void renew () {

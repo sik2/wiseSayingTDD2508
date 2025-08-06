@@ -1,7 +1,11 @@
 package com.ll.wiseSaying.Repository;
 
+import com.ll.AppContext;
 import com.ll.domain.wiseSaying.entity.WiseSaying;
 import com.ll.domain.wiseSaying.repository.WiseSayingFileRepository;
+import com.ll.standard.util.Util;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +15,17 @@ public class WiseSayingFileRepositoryTest {
     private final WiseSayingFileRepository wiseSayingFileRepository;
 
     WiseSayingFileRepositoryTest() {
-        wiseSayingFileRepository = new WiseSayingFileRepository();
+        wiseSayingFileRepository = AppContext.wiseSayingFileRepository;
+    }
+
+    @BeforeAll
+    static void beforeAll() {
+        AppContext.renew();
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        Util.file.rmdir("db/wiseSaying");
     }
 
     @Test
