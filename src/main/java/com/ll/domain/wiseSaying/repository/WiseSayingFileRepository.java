@@ -26,6 +26,8 @@ public class WiseSayingFileRepository {
      public WiseSaying findById(int id) {
         String wiseSayingJsonStr = Util.file.get("db/wiseSaying/%d.json".formatted(id), "");
 
+        if (wiseSayingJsonStr.isBlank()) return null;
+
         Map<String, Object> wiseSayingMap = Util.json.toMap(wiseSayingJsonStr);
 
 
@@ -34,8 +36,10 @@ public class WiseSayingFileRepository {
         return wiseSaying;
      }
 
-     public void delete(WiseSaying wiseSaying) {
+     public boolean delete(WiseSaying wiseSaying) {
+        String filePath = "db/wiseSaying/%d.json".formatted(wiseSaying.getId());
 
+        return Util.file.delete(filePath);
      }
 
      private void setLastId(int newId) {
